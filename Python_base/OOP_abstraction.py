@@ -1,13 +1,16 @@
 class Database:
     def __init__(self):
         self.data_list = []
-        self.Data = Data
 
     def read_data(self, criteria):
         result = []
         for object in self.data_list:
-            if object.__dict__.get(list(criteria.keys())[0]) == list(criteria.values())[0]:
-                result.append(object.return_list())
+            criteria_num = 0
+            for key, value in criteria.items():
+                if object.__dict__.get(key) == value:
+                    criteria_num += 1
+                if criteria_num == len(criteria):
+                    result.append(object.return_list())
         if len(result) != 0:
             return print(result)
         else:
@@ -30,11 +33,11 @@ class Data:
 data = Database()
 chel = Data('Ukraine', 'Valera', 20)
 chel2 = Data('Poland', 'Anton', 31)
-chel3 = Data('Poland', 'Pwek', 22)
+chel3 = Data('Poland', 'Pwek', 20)
 
 data.write_data(chel)
 data.write_data(chel2)
 data.write_data(chel3)
 
-find1 = {'country': 'Poland'}
+find1 = {'country': 'Poland', 'age': 20}
 data.read_data(find1)
