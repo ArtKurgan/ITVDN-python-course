@@ -5,11 +5,11 @@ class Database:
     def read_data(self, criteria):
         result = []
         for object in self.data_list:
-            criteria_num = 0
+            matches = 0
             for key, value in criteria.items():
                 if object.__dict__.get(key) == value:
-                    criteria_num += 1
-                if criteria_num == len(criteria):
+                    matches += 1
+                if matches == len(criteria):
                     result.append(object.return_list())
         if len(result) != 0:
             return print(result)
